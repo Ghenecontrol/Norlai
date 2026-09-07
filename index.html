@@ -605,6 +605,20 @@
   .reason-item:last-child{border-bottom:1px solid var(--line);}
   .reason-num{font-family:'Fraunces',serif;font-style:italic;color:var(--accent-2);font-size:20px;}
   .reason-item h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin-bottom:6px;}
+
+  /* ---------- TRACTION ---------- */
+  .traction-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px;}
+  .traction-card{
+    border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;background:var(--bg-elev);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .traction-card .n{font-family:'Fraunces',serif;font-style:italic;font-size:30px;color:var(--accent-2);line-height:1;}
+  .traction-card .l{font-size:12.5px;color:var(--text-muted);line-height:1.55;}
+  .traction-card.live{background:var(--accent-2);border-color:var(--accent-2);}
+  .traction-card.live .n{color:#231704;}
+  .traction-card.live .l{color:#4a350f;}
+  @media (max-width:860px){ .traction-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .traction-grid{grid-template-columns:1fr;} }
   .reason-item p{color:var(--text-muted);font-size:14px;max-width:560px;}
 
   /* ---------- TRUST + FORM (new) ---------- */
@@ -715,8 +729,8 @@
       <a href="#product">Product</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="#pricing">Pricing</a>
+      <a href="#traction">Traction</a>
       <a href="#team">Team</a>
-      <a href="#roadmap">Roadmap</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a href="#contact" class="nav-cta">Get a free audit →</a>
@@ -727,6 +741,7 @@
     <a href="dashboard.html" onclick="closeMobileNav()">Dashboard</a>
     <a href="#work" onclick="closeMobileNav()">Live audit</a>
     <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+    <a href="#traction" onclick="closeMobileNav()">Traction</a>
     <a href="#team" onclick="closeMobileNav()">Team</a>
     <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
     <a href="#faq" onclick="closeMobileNav()">FAQ</a>
@@ -735,7 +750,7 @@
 
 <section class="hero">
   <div class="hero-particles" id="hero-particles"></div>
-  <div class="eyebrow hero-anim" style="animation-delay:.05s;">Name TBD · AI conversion intelligence for B2B websites</div>
+  <div class="eyebrow hero-anim" style="animation-delay:.05s;">Live · AI conversion intelligence for B2B websites</div>
   <h1 class="display hero-anim" style="animation-delay:.15s;">AI that turns your B2B website into a <span class="italic">sales system.</span></h1>
   <p class="hero-sub hero-anim" style="animation-delay:.28s;">We analyze your website, your product and how visitors actually behave — then tell you exactly why they're not converting, and what to fix first.</p>
 
@@ -773,7 +788,7 @@
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>SaaS<span>AI products</span><span>Fintech</span><span>Healthtech</span><span>Consulting</span><span>Enterprise software</span><span>SaaS</span><span>AI products</span><span>Fintech</span><span>Healthtech</span><span>Consulting</span><span>Enterprise software</span></span>
+    <span>SaaS<span>AI products</span><span>Fintech</span><span>Healthtech</span><span>Consulting</span><span>Enterprise software</span><span>NGOs &amp; nonprofits</span><span>Organizations</span><span>SaaS</span><span>AI products</span><span>Fintech</span><span>Healthtech</span><span>Consulting</span><span>Enterprise software</span><span>NGOs &amp; nonprofits</span><span>Organizations</span></span>
   </div>
 </div>
 
@@ -963,13 +978,18 @@
   <div class="wrap">
     <div class="section-tag"><span class="n">06</span> Technology &amp; infrastructure</div>
     <h2 class="section-title">Built on cloud and accelerated for real-time analysis.</h2>
-    <p class="section-desc">As the number of sites and visitor events grows, so does the infrastructure underneath — this is a compute story, not a hosting story.</p>
+    <p class="section-desc">As the number of sites and visitor events grows, so does the infrastructure underneath — this is a compute story, not a hosting story. Core hosting runs on AWS; Azure covers enterprise identity and a second AI layer where it's the better fit.</p>
 
-    <div class="infra-split">
+    <div class="infra-split" style="grid-template-columns:repeat(3,1fr);">
       <div class="infra-card">
         <h4>How we use AWS</h4>
         <p>AWS hosts the audit APIs, stores the crawled site content and analytics events securely, orchestrates crawler and AI workers, and serves the dashboard.</p>
         <div class="infra-chips"><span>Bedrock</span><span>ECS / Fargate</span><span>S3</span><span>Aurora PostgreSQL</span><span>OpenSearch</span><span>CloudFront</span><span>Cognito</span><span>Lambda</span></div>
+      </div>
+      <div class="infra-card">
+        <h4>How we use Azure</h4>
+        <p>Azure backs the enterprise layer — single sign-on for Enterprise-tier accounts, a second AI provider for redundancy and data-residency needs, and layout analysis on page screenshots.</p>
+        <div class="infra-chips"><span>Azure OpenAI Service</span><span>Microsoft Entra ID</span><span>Azure AI Document Intelligence</span><span>Azure Key Vault</span></div>
       </div>
       <div class="infra-card">
         <h4>How we use NVIDIA</h4>
@@ -980,14 +1000,16 @@
 
     <div class="infra-table">
       <div class="infra-row head"><div>Capability</div><div>Stack</div><div>What it does</div></div>
-      <div class="infra-row"><div class="cap">Website understanding</div><div class="stack">Bedrock</div><p>Reads crawled content to understand product, audience and positioning.</p></div>
+      <div class="infra-row"><div class="cap">Website understanding</div><div class="stack">Bedrock, Azure OpenAI Service</div><p>Reads crawled content to understand product, audience and positioning; Azure OpenAI provides a second model provider for failover and regions with data-residency requirements.</p></div>
       <div class="infra-row"><div class="cap">Semantic &amp; behaviour search</div><div class="stack">OpenSearch</div><p>Retrieval over site content and visitor event history for grounded recommendations.</p></div>
       <div class="infra-row"><div class="cap">Crawling &amp; orchestration</div><div class="stack">ECS / Fargate, Lambda</div><p>Runs the crawler, analytics workers and scheduled monitoring jobs.</p></div>
-      <div class="infra-row"><div class="cap">Screenshot / UX analysis</div><div class="stack">NVIDIA TensorRT, Triton</div><p>Computer vision over page screenshots to detect layout and CTA-visibility issues at low latency.</p></div>
+      <div class="infra-row"><div class="cap">Screenshot / UX analysis</div><div class="stack">NVIDIA TensorRT, Triton, Azure AI Document Intelligence</div><p>Computer vision and layout extraction over page screenshots to detect layout and CTA-visibility issues at low latency.</p></div>
+      <div class="infra-row"><div class="cap">Enterprise identity &amp; access</div><div class="stack">Microsoft Entra ID, Cognito</div><p>Cognito handles standard account auth; Entra ID gives Enterprise-tier customers Microsoft-based SSO and RBAC where their IT policy requires it.</p></div>
+      <div class="infra-row"><div class="cap">Secrets &amp; key management</div><div class="stack">Azure Key Vault</div><p>Customer-managed keys option for Enterprise accounts with stricter data-handling requirements.</p></div>
       <div class="infra-row"><div class="cap">Data &amp; accounts</div><div class="stack">Aurora PostgreSQL, Cognito</div><p>Stores organizations, websites, recommendations and experiments; handles auth and access.</p></div>
       <div class="infra-row"><div class="cap">Delivery</div><div class="stack">CloudFront, S3</div><p>Fast dashboard and audit delivery globally; stores snapshots and generated reports.</p></div>
     </div>
-    <p class="infra-note">AWS and NVIDIA are trademarks of their respective owners. This product is not affiliated with or endorsed by them.</p>
+    <p class="infra-note">AWS, Microsoft Azure and NVIDIA are trademarks of their respective owners. This product is not affiliated with or endorsed by them.</p>
   </div>
 </section>
 
@@ -1066,25 +1088,44 @@
   </div>
 </section>
 
+<section class="section" id="traction">
+  <div class="wrap">
+    <div class="section-tag"><span class="n">11</span> Traction &amp; product status</div>
+    <h2 class="section-title">Where we actually are, stated plainly.</h2>
+    <p class="section-desc">This is an early-stage startup, not an established platform. These are the real numbers today — not projections, not rounded up.</p>
+
+    <div class="traction-grid">
+      <div class="traction-card"><div class="n">10–40</div><div class="l">People actively using the product right now</div></div>
+      <div class="traction-card"><div class="n">6–12</div><div class="l">Companies that have formally committed to buy (LOIs)</div></div>
+      <div class="traction-card"><div class="n">4–5</div><div class="l">Companies actively testing the product as pilots</div></div>
+      <div class="traction-card"><div class="n">4–6</div><div class="l">Design partners helping shape the roadmap directly</div></div>
+      <div class="traction-card"><div class="n">20–30</div><div class="l">Qualified businesses in active pilot conversations</div></div>
+      <div class="traction-card"><div class="n">30–50</div><div class="l">Customer discovery interviews completed with target buyers</div></div>
+      <div class="traction-card"><div class="n">150–300</div><div class="l">Qualified names on the waitlist</div></div>
+      <div class="traction-card live"><div class="n">Live</div><div class="l">In active use today — not a beta, not a concept</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="roadmap">
   <div class="wrap">
-    <div class="section-tag"><span class="n">11</span> Roadmap</div>
-    <h2 class="section-title">Where this goes from MVP to autonomous optimization.</h2>
+    <div class="section-tag"><span class="n">12</span> Roadmap</div>
+    <h2 class="section-title">Live today, expanding toward autonomous optimization.</h2>
     <p class="section-desc">Four phases, each shipping something usable — not a wall of future promises with nothing in between.</p>
 
     <div class="infra-table">
       <div class="infra-row head"><div>Phase</div><div>Timeline</div><div>What ships</div></div>
-      <div class="infra-row"><div class="cap">Phase 1 — MVP</div><div class="stack">0–3 months</div><p>Crawler, AI audit, conversion scoring, recommendations, basic dashboard, auth, monitoring. Goal: validate whether companies act on AI-generated recommendations.</p></div>
-      <div class="infra-row"><div class="cap">Phase 2 — Intelligence</div><div class="stack">3–6 months</div><p>Behaviour analytics, visitor intent detection, AI content optimizer, lead intelligence, competitor analysis, automated alerts. Goal: move from "audit my website" to "understand my website."</p></div>
-      <div class="infra-row"><div class="cap">Phase 3 — Optimization</div><div class="stack">6–9 months</div><p>A/B testing, AI experiment recommendations, landing page generator, conversion forecasting, CRM integrations. Goal: move from understand to improve.</p></div>
-      <div class="infra-row"><div class="cap">Phase 4 — Autonomous</div><div class="stack">9–12+ months</div><p>AI detects an opportunity, proposes a change, runs the experiment, measures the outcome, and learns for next time — with a human able to review at every step.</p></div>
+      <div class="infra-row"><div class="cap">Phase 1 — Live</div><div class="stack">Now</div><p>Crawler, AI audit, conversion scoring, recommendations, dashboard, auth, monitoring — live and in use with early design partners and pilot customers.</p></div>
+      <div class="infra-row"><div class="cap">Phase 2 — Intelligence</div><div class="stack">Next 3 months</div><p>Behaviour analytics, visitor intent detection, AI content optimizer, lead intelligence, competitor analysis, automated alerts. Goal: move from "audit my website" to "understand my website."</p></div>
+      <div class="infra-row"><div class="cap">Phase 3 — Optimization</div><div class="stack">3–6 months out</div><p>A/B testing, AI experiment recommendations, landing page generator, conversion forecasting, CRM integrations. Goal: move from understand to improve.</p></div>
+      <div class="infra-row"><div class="cap">Phase 4 — Autonomous</div><div class="stack">6–9 months out</div><p>AI detects an opportunity, proposes a change, runs the experiment, measures the outcome, and learns for next time — with a human able to review at every step.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section" id="faq">
   <div class="wrap">
-    <div class="section-tag"><span class="n">12</span> Questions, answered</div>
+    <div class="section-tag"><span class="n">13</span> Questions, answered</div>
     <div>
       <div class="faq-item" data-open="false">
         <button class="faq-q" onclick="toggleFaq(this)">How is this different from Google Analytics or Hotjar? <span class="plus">+</span></button>
@@ -1108,7 +1149,7 @@
 
 <section class="section" id="contact">
   <div class="wrap">
-    <div class="section-tag"><span class="n">13</span> Trust, security &amp; getting started</div>
+    <div class="section-tag"><span class="n">14</span> Trust, security &amp; getting started</div>
     <h2 class="section-title">Find out why your website isn't <span class="italic" style="font-family:'Fraunces',serif;">converting.</span></h2>
     <p class="section-desc">Run the free audit above, or tell us a bit about your site and we'll follow up directly.</p>
 
@@ -1214,7 +1255,8 @@
       '.build-card', '.cs-card', '.opp-item', '.stat', '.price-row',
       '.process-card', '.faq-item', '.mini-card', '.step-flow-item',
       '.infra-card', '.infra-row', '.reason-item', '.team-card',
-      '.compare-row', '.content-grid', '.section-title', '.section-desc'
+      '.compare-row', '.content-grid', '.section-title', '.section-desc',
+      '.traction-card'
     ];
     const nodes = document.querySelectorAll(selectors.join(','));
     nodes.forEach((el, i) => {
@@ -1233,7 +1275,7 @@
   }
 
   function initGlowCards(){
-    document.querySelectorAll('.build-card, .mini-card, .team-card, .infra-card, .opp-item').forEach(card => {
+    document.querySelectorAll('.build-card, .mini-card, .team-card, .infra-card, .opp-item, .traction-card').forEach(card => {
       card.classList.add('glow-card');
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
